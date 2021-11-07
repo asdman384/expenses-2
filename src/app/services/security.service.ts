@@ -1,3 +1,7 @@
+/**
+ * https://github.com/google/google-api-javascript-client
+ */
+
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -17,6 +21,7 @@ export class SecurityService {
     public get isSignedIn() {
         return gapi.auth2.getAuthInstance().isSignedIn.get();
     }
+
     public get user(): gapi.auth2.BasicProfile {
         return gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
     }
