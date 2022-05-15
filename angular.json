@@ -16,16 +16,12 @@
             "outputPath": "dist/exp2",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "sourceMap": true,
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -39,7 +35,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -83,13 +78,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         },
@@ -101,9 +91,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -116,6 +104,37 @@
             "production": {
               "devServerTarget": "exp2:serve:production"
             }
+          }
+        }
+      }
+    },
+    "security": {
+      "projectType": "library",
+      "root": "projects/security",
+      "sourceRoot": "projects/security/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/security/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/security/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/security/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/security/src/test.ts",
+            "tsConfig": "projects/security/tsconfig.spec.json",
+            "karmaConfig": "projects/security/karma.conf.js"
           }
         }
       }

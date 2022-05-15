@@ -1,39 +1,24 @@
-import { NgModule, Injectable } from '@angular/core';
-import { RouterModule, Routes, CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { PageHomeComponent } from './page-home/page-home.component';
 import { PageSettingsComponent } from './page-settings/page-settings.component';
-import { SecurityService } from './services/security.service';
 
-
-@Injectable({
-    providedIn: 'root'
-})
-export class AuthGuard implements CanActivate {
-
-    constructor(private security: SecurityService, private router: Router) { }
-
-    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (this.security.isSignedIn) {
-            return true;
-        } else {
-            return this.router.parseUrl('');
-        }
-    }
-}
-
-
-const routes: Routes = [{
+const routes: Routes = [
+  {
     path: '',
-    component: PageHomeComponent
-}, {
+    component: PageHomeComponent,
+  },
+  {
     path: 'settings',
     component: PageSettingsComponent,
-    canActivate: [AuthGuard]
-}];
+    canActivate: [AuthGuard],
+  },
+];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule],
-    providers: [AuthGuard]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+  providers: [AuthGuard],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
